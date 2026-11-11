@@ -111,7 +111,7 @@ purchases, held authorizations, and unapproved orders from the last 3 hours (whe
 Requires Python 3.11+.
 
 ```bash
-git clone https://github.com/<you>/payguard-ai && cd payguard-ai
+git clone https://github.com/bar-art/payguard-ai && cd payguard-ai
 python3.11 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
