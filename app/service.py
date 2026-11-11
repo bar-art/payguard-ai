@@ -11,7 +11,7 @@ import uuid
 from datetime import datetime, timedelta, timezone
 from decimal import Decimal
 from app.ai import AIUnavailable, MandateReviewer
-from app.audit import AuditRepository
+from app.audit import AuditRepository, append_event, verify_chain
 from app.database import Database
 from app.paypal_client import PaymentGateway, PayPalError
 from app.risk_engine import History, check_rules, combine, recent_cutoff
@@ -80,8 +80,7 @@ class GuardService:
         return History(committed=sum((Decimal(r['amount']) for r in rows), Decimal('0')), recent_count=recent)
 
     def _event(self, conn, purchase_id: str, actor: str, event: str, **detail) -> None:
-        conn.execute('INSERT INTO events(purchase_id, actor, event, detail, created_at) VALUES (?,?,?,?,?)',
-                     (purchase_id, actor, event, json.dumps(detail, default=str), _now()))
+        append_event(conn, purchase_id, actor, event, json.dumps(detail, default=str), _now())
 
     def _set(self, conn, purchase_id: str, **fields) -> None:
         fields['updated_at'] = _now()
@@ -224,7 +223,11 @@ class GuardService:
 
     def _events(self, conn, purchase_id: str) -> list[dict]:
         return [dict(e, detail=json.loads(e['detail'])) for e in conn.execute(
-            'SELECT actor, event, detail, created_at FROM events WHERE purchase_id=? ORDER BY id', (purchase_id,))]
+            'SELECT actor, event, detail, created_at, hash FROM events WHERE purchase_id=? ORDER BY id', (purchase_id,))]
+
+    def verify_audit(self) -> dict:
+        with self.db.connect() as conn:
+            return verify_chain(conn)
 
     def get_purchase(self, purchase_id: str) -> dict:
         with self.db.connect() as conn:

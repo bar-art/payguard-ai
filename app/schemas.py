@@ -142,6 +142,17 @@ class ReviewRequest(StrictModel):
     reason: str = Field(min_length=1, max_length=1000)
 
 
+class CustomProduct(StrictModel):
+    """A product written by whoever is testing PayGuard, page text included (red-team playground)."""
+    merchant: Slug
+    title: str = Field(min_length=1, max_length=200)
+    category: Slug
+    price: Money
+    page: str = Field(default='', max_length=4000)
+
+
 class ShopRequest(StrictModel):
     mandate_id: str = Field(min_length=1, max_length=64)
     errand: str = Field(default='', max_length=500)
+    extra_product: CustomProduct | None = None  # added to the catalog the agent sees
+    force: bool = False  # skip the agent's choice and buy extra_product, as a fully hijacked agent would

@@ -64,7 +64,14 @@ class Database:
                     actor TEXT NOT NULL,
                     event TEXT NOT NULL,
                     detail TEXT NOT NULL,
-                    created_at TEXT NOT NULL
+                    created_at TEXT NOT NULL,
+                    prev_hash TEXT,
+                    hash TEXT
                 );
                 CREATE INDEX IF NOT EXISTS events_purchase_idx ON events(purchase_id);
             ''')
+            cols = {r[1] for r in conn.execute('PRAGMA table_info(events)')}
+            for col in [c for c in ('prev_hash', 'hash') if c not in cols]:
+                conn.execute(f'ALTER TABLE events ADD COLUMN {col} TEXT')
+            from app.audit import backfill_chain
+            backfill_chain(conn)

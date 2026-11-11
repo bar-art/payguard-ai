@@ -107,8 +107,23 @@ def create_app(settings: Settings | None = None, gateway: PaymentGateway | None 
             mandate = service.get_mandate(req.mandate_id)
         except NotFound as exc:
             raise not_found(exc)
-        intent, chosen_by = agent.propose(mandate, req.mandate_id, req.errand)
-        return service.submit(intent, origin=f'agent:{chosen_by}')
+        products = catalog['products']
+        if req.extra_product:
+            custom = {**req.extra_product.model_dump(mode='json'), 'id': 'custom', 'currency': mandate.currency}
+            products = products + [custom]
+            if req.force:
+                intent = agent.intent_for(req.mandate_id, custom, 'Chosen by the red-team playground (forced).')
+                return service.submit(intent, origin='playground:forced')
+        elif req.force:
+            raise HTTPException(422, 'force needs extra_product')
+        intent, chosen_by = ShoppingAgent(llm, products).propose(mandate, req.mandate_id, req.errand)
+        origin = f'agent:{chosen_by}' + (':playground' if req.extra_product else '')
+        return service.submit(intent, origin=origin)
+
+    @app.get('/audit/verify')
+    def verify_audit() -> dict:
+        """Recompute the SHA-256 chain over every audit event."""
+        return service.verify_audit()
 
     @app.post('/agent/scenario/{scenario_id}', status_code=201)
     def agent_scenario(scenario_id: str, mandate_id: str = Query(...)) -> dict:
