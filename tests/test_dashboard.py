@@ -39,3 +39,22 @@ def test_dashboard_mandate_then_agent_purchase(backend):
     assert not page.exception
     purchases = backend.get('/purchases').json()
     assert len(purchases) == 1 and purchases[0]['status'] == 'awaiting_buyer'
+
+
+def test_dashboard_finishes_paypal_return(backend):
+    mid = backend.post('/mandates', json={
+        'owner': 'alex', 'instruction': 'Buy headphones under $150.', 'max_per_purchase': '150',
+        'budget_total': '300', 'allowed_categories': ['audio'], 'allowed_merchants': ['harbor-audio.example']}).json()['mandate_id']
+    p = backend.post('/purchases', json={'mandate_id': mid, 'merchant': 'harbor-audio.example', 'item': 'ANC-200',
+                                         'category': 'audio', 'amount': '99.00',
+                                         'agent_rationale': 'Matches the instruction.'}).json()
+    def get(url, params=None, timeout=None, follow_redirects=False):
+        return backend.get(url.replace('http://127.0.0.1:8000', ''), params=params, follow_redirects=follow_redirects)
+    page = AppTest.from_file(str(DASHBOARD))
+    page.query_params['paypal'] = 'return'
+    page.query_params['token'] = p['paypal_order_id']
+    with patch('httpx.get', side_effect=get):
+        page.run(timeout=15)
+    assert not page.exception
+    assert backend.get(f"/purchases/{p['purchase_id']}").json()['status'] == 'captured'
+    assert any('Back from PayPal' in s.value for s in page.success)

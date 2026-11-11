@@ -138,6 +138,15 @@ python -m streamlit run dashboard/streamlit_app.py --server.address 127.0.0.1
 Open http://127.0.0.1:8501. The dashboard sidebar shows whether PayPal is live sandbox or simulated, and
 which model reviews purchases. API docs: http://127.0.0.1:8000/docs.
 
+### Deploy to Render
+
+`render.yaml` is a Render Blueprint for one free web service. FastAPI runs on localhost inside the
+service, and Streamlit gets the public port (`render_start.sh`). With `PAYPAL_RETURN_TO=dashboard`,
+PayPal sends the buyer back to the dashboard, which hands the order to the backend, so only one
+URL has to be public. In Render, choose New, then Blueprint, pick the repo, and enter `PAYPAL_CLIENT_ID`,
+`PAYPAL_CLIENT_SECRET` and `LLM_API_KEY` when asked. The free plan sleeps when idle, and its SQLite
+file resets on restart, which is fine for a demo.
+
 ### Demo
 
 1. **Mandate:** keep the default ("wireless noise-cancelling headphones, under $150", two approved stores) and click **Create mandate**.
@@ -164,7 +173,7 @@ The demo catalog (`data/catalog.json`) uses fictional merchants on `.example` do
 python -m pytest -q
 ```
 
-36 offline tests (no network, no keys) cover:
+38 offline tests (no network, no keys) cover:
 
 - the rules, including the prompt-injection patterns
 - that the AI can't lower risk and that the guard fails closed
@@ -174,6 +183,7 @@ python -m pytest -q
 - the dashboard, driven against a live backend
 - tamper detection in the audit chain, and migration of an older database
 - the red-team playground
+- PayPal returning to the dashboard instead of the backend (the Render setup)
 
 ## API
 
@@ -201,6 +211,8 @@ app/
   database.py       SQLite schema
   audit.py          human review decisions
 dashboard/          Streamlit UI
+scripts/            reviewer model comparison
+render.yaml         Render Blueprint (render_start.sh runs both processes)
 data/catalog.json   fictional demo catalog and scenarios
 tests/              offline tests
 ```

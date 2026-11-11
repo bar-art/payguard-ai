@@ -340,3 +340,20 @@ def test_playground_force_is_blocked_before_paypal(make_client):
         assert c.post('/agent/shop', json={'mandate_id': mid, 'force': True}).status_code == 422
         p = c.post('/agent/shop', json={'mandate_id': mid, 'extra_product': {**product, 'price': '5.00'}}).json()
         assert p['events'][0]['detail']['origin'] == 'agent:rules:playground'
+
+
+def test_paypal_can_return_to_the_dashboard(tmp_path):
+    settings = Settings(_env_file=None, database_url=f'sqlite:///{tmp_path / "r.db"}',
+                        paypal_return_to='dashboard', RENDER_EXTERNAL_URL='https://payguard.example.com')
+    gateway = SimulatedPayPal('http://testserver')
+    seen = {}
+    real_create = gateway.create_order
+    def spy(**kw):
+        seen.update(kw)
+        return real_create(**kw)
+    gateway.create_order = spy
+    with TestClient(create_app(settings, gateway=gateway, use_llm=False)) as c:
+        mid = c.post('/mandates', json=MANDATE).json()['mandate_id']
+        buy(c, mid)
+    assert seen['return_url'] == 'https://payguard.example.com/?paypal=return'
+    assert seen['cancel_url'] == 'https://payguard.example.com/?paypal=cancel'

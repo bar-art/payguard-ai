@@ -1,6 +1,6 @@
 from functools import lru_cache
 from typing import Literal
-from pydantic import AnyHttpUrl, SecretStr, field_validator
+from pydantic import AliasChoices, AnyHttpUrl, Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -16,7 +16,12 @@ class Settings(BaseSettings):
     llm_timeout_s: float = 45
     database_url: str = 'sqlite:///./data/payguard.db'
     backend_url: AnyHttpUrl = 'http://127.0.0.1:8000'
-    dashboard_url: AnyHttpUrl = 'http://127.0.0.1:8501'
+    # On Render, RENDER_EXTERNAL_URL is the public URL of the dashboard.
+    dashboard_url: AnyHttpUrl = Field('http://127.0.0.1:8501',
+                                      validation_alias=AliasChoices('DASHBOARD_URL', 'RENDER_EXTERNAL_URL'))
+    # Where PayPal sends the buyer back: the backend (local default) or the dashboard, which then
+    # calls the backend. Use 'dashboard' when only the dashboard is public, as on Render.
+    paypal_return_to: Literal['backend', 'dashboard'] = 'backend'
     catalog_path: str = 'data/catalog.json'
 
     @field_validator('database_url')

@@ -91,6 +91,16 @@ def show_purchase(p: dict, key: str) -> None:
 
 
 # Coming back from PayPal
+# PayPal can send the buyer straight here (PAYPAL_RETURN_TO=dashboard); hand the order to the backend.
+if st.query_params.get('paypal') in ('return', 'cancel') and st.query_params.get('token'):
+    r = httpx.get(f"{BACKEND}/paypal/{st.query_params['paypal']}", params={'token': st.query_params['token']},
+                  timeout=90, follow_redirects=False)
+    if r.status_code == 303 and 'purchase=' in r.headers.get('location', ''):
+        st.query_params.clear()
+        st.query_params['purchase'] = r.headers['location'].split('purchase=')[-1]
+    else:
+        st.error(f'Could not finish the PayPal step ({r.status_code}).')
+        st.query_params.clear()
 returned = st.query_params.get('purchase')
 if returned:
     p = api('GET', f'/purchases/{returned}')

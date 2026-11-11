@@ -32,7 +32,7 @@ def create_app(settings: Settings | None = None, gateway: PaymentGateway | None 
     gateway = gateway or build_gateway(settings)
     llm = llm if llm is not None else (build_llm(settings) if use_llm else None)
     service = GuardService(database, gateway, MandateReviewer(llm) if llm else None,
-                           str(settings.backend_url), str(settings.dashboard_url))
+                           str(settings.backend_url), str(settings.dashboard_url), settings.paypal_return_to)
     catalog = json.loads(Path(settings.catalog_path).read_text())
     agent = ShoppingAgent(llm, catalog['products'])
 

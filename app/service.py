@@ -32,12 +32,17 @@ def _now() -> str:
 
 class GuardService:
     def __init__(self, db: Database, gateway: PaymentGateway, reviewer: MandateReviewer | None,
-                 backend_url: str, dashboard_url: str):
+                 backend_url: str, dashboard_url: str, return_to: str = 'backend'):
         self.db = db
         self.gateway = gateway
         self.reviewer = reviewer
         self.backend_url = backend_url.rstrip('/')
         self.dashboard_url = dashboard_url.rstrip('/')
+        if return_to == 'dashboard':  # PayPal appends ?token=<order id>&PayerID=...
+            self.return_url, self.cancel_url = (f'{self.dashboard_url}/?paypal=return',
+                                                f'{self.dashboard_url}/?paypal=cancel')
+        else:
+            self.return_url, self.cancel_url = f'{self.backend_url}/paypal/return', f'{self.backend_url}/paypal/cancel'
         self.audit = AuditRepository(db)
         self._lock = threading.Lock()  # one state change at a time; SQLite is the source of truth
 
@@ -121,7 +126,7 @@ class GuardService:
             order = self.gateway.create_order(
                 reference_id=purchase_id, amount=intent.amount, currency=intent.currency,
                 description=f'{intent.item} ({intent.merchant})',
-                return_url=f'{self.backend_url}/paypal/return', cancel_url=f'{self.backend_url}/paypal/cancel')
+                return_url=self.return_url, cancel_url=self.cancel_url)
         except PayPalError as exc:
             with self.db.connect() as conn:
                 self._set(conn, purchase_id, status=PurchaseStatus.ERROR.value)
