@@ -139,7 +139,8 @@ def create_app(settings: Settings | None = None, gateway: PaymentGateway | None 
             raise not_found(exc)
 
     def back_to_dashboard(purchase: dict) -> RedirectResponse:
-        return RedirectResponse(f"{settings.dashboard_url}?purchase={purchase['purchase_id']}", status_code=303)
+        return RedirectResponse(f"{settings.dashboard_url}?purchase={purchase['purchase_id']}&from=paypal",
+                                status_code=303)
 
     @app.get('/paypal/return')
     def paypal_return(token: str) -> RedirectResponse:

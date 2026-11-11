@@ -121,6 +121,7 @@ def show_purchase(p: dict, key: str) -> None:
                ('review', 'in_review'): 'Funds are held at PayPal, waiting for a human'}
     reason = (guard['hard_blocks'][0].split(': ', 1)[-1] if guard['hard_blocks']
               else outcome.get((p['decision'], p['status']), meaning))
+    reason = reason[:1].upper() + reason[1:]
     st.markdown(f"""<div class="pg-verdict {cls}"><div class="tag">{tag}</div>
       <div><div class="what">{esc(intent['item'])}</div>
       <div class="why">{esc(intent['merchant'])} · {esc(intent['category'])} · {esc(reason)}</div></div>
@@ -210,7 +211,8 @@ if st.query_params.get('paypal') in ('return', 'cancel') and st.query_params.get
                   timeout=90, follow_redirects=False)
     if r.status_code == 303 and 'purchase=' in r.headers.get('location', ''):
         st.query_params.clear()
-        st.query_params['purchase'] = r.headers['location'].split('purchase=')[-1]
+        st.query_params['purchase'] = r.headers['location'].split('purchase=')[-1].split('&')[0]
+        st.query_params['from'] = 'paypal'
     else:
         st.error(f'Could not finish the PayPal step ({r.status_code}).')
         st.query_params.clear()
@@ -218,7 +220,8 @@ returned = st.query_params.get('purchase')
 if returned:
     p = api('GET', f'/purchases/{returned}')
     if p:
-        st.success('Back from PayPal.')
+        if st.query_params.get('from') == 'paypal':
+            st.success('Back from PayPal.')
         with st.container(border=True):
             show_purchase(p, 'returned')
     if st.button('Dismiss'):
