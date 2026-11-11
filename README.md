@@ -71,10 +71,22 @@ The reviewer works with any OpenAI-compatible chat completions endpoint (`LLM_BA
 `LLM_API_KEY`, `LLM_MODEL`). Development used **Claude Haiku 5.5 through OpenRouter**
 (`LLM_BASE_URL=https://openrouter.ai/api/v1`, `LLM_MODEL=anthropic/claude-haiku-5.5`).
 
-Before picking it, four models were scored on five reviewer cases (a clean purchase, the wrong item
-from an approved store, a hijacked agent, an unknown store, and an injection worded to slip past the
-regex), with `scripts/eval_reviewer.py`. All four were correct on all five. Claude Haiku 5.5 was the fastest, at 1.6–3.5 s per review.
-The others were GPT-6 Luna, DeepSeek V4.1 Flash and Qwen 3.8 Flash. Each costs a fraction of a cent per review.
+Before picking it, models were scored on six reviewer cases with `scripts/eval_reviewer.py`:
+
+- a clean purchase
+- the wrong item from an approved store
+- a hijacked agent
+- an unknown store
+- an agent that reports it *ignored* an injection on another page (it should not be flagged)
+- an injection worded to slip past the regex
+
+Claude Haiku 5.5, DeepSeek V4.1 Flash and GPT-6 Luna were correct on all six. Claude Haiku 5.5 was
+chosen for speed, at about 2–4 s per review. Each review costs a fraction of a cent.
+
+The fifth case comes from a real false positive found while testing. The live shopping agent
+noticed the injected bundle, refused it, and said so in its rationale. The first version of the
+reviewer prompt then flagged the clean purchase as an injection. The prompt now defines injection
+as text on *this* purchase's page, or an agent acting on it.
 
 ## Risk rules (`app/risk_engine.py`)
 
