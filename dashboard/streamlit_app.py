@@ -70,7 +70,7 @@ DECISION = {'allow': ('ALLOW', 'v-allow', 'Will be paid automatically after the 
             'review': ('REVIEW', 'v-review', 'Funds will be held at PayPal until a human captures or voids them'),
             'block': ('BLOCK', 'v-block', 'Stopped before any PayPal order was created')}
 STATUS_LABEL = {
-    'blocked': 'Blocked, no PayPal order', 'awaiting_buyer': 'Waiting for buyer approval at PayPal',
+    'blocked': 'Blocked, no PayPal order', 'awaiting_buyer': 'Not paid yet, waiting for buyer approval',
     'in_review': 'Funds held, waiting for a human', 'captured': 'Paid (captured)', 'voided': 'Hold released (voided)',
     'cancelled': 'Buyer cancelled', 'error': 'PayPal error',
 }
@@ -242,6 +242,8 @@ def mini_card(p: dict, case: str) -> str:
         why = DECISION[p['decision']][2]
     return (f'<div class="pg-mini {cls}"><div class="case">{esc(case)}</div><span class="tag" '
             f'style="background:{dict(allow="#059669", review="#D97706", block="#DC2626")[p["decision"]]}">{tag}</span>'
+            f' <span style="font-size:.8rem;color:#475569;font-weight:600">&nbsp;Payment: '
+            f'{esc(STATUS_LABEL.get(p["status"], p["status"]))}</span>'
             f'<div class="item">{esc(p["intent"]["item"])} · ${float(p["amount"]):,.2f}</div>'
             f'<div class="why">{esc(why)}</div></div>')
 
@@ -269,7 +271,8 @@ if not returned:
                 p = api('GET', f'/purchases/{pid}')
                 if p:
                     col.markdown(mini_card(p, case), unsafe_allow_html=True)
-            st.caption('Same rules for everyone. Only the AI reviewer could tell that wired kids\' headphones are not '
+            st.caption('ALLOW and REVIEW are PayGuard decisions, not payments. No money moves until the buyer '
+                       'approves at PayPal and the funds are captured. Same rules for everyone. Only the AI reviewer could tell that wired kids\' headphones are not '
                        'what was asked for. Open the Ledger tab for the full reasoning, the PayPal ids and the audit '
                        'chain, or the Agent tab to approve a payment at PayPal.')
 
@@ -420,7 +423,8 @@ with tab_l:
         if v1.button('Verify audit integrity', width='stretch'):
             v = api('GET', '/audit/verify')
             if v and v['ok']:
-                v2.success(f"All {v['events']} audit events chain correctly (SHA-256). Head: `{v['head_hash'][:16]}…`")
+                v2.success(f"All {v['events']} audit events chain correctly (SHA-256). Head: `{v['head_hash'][:16]}…`. "
+                           "This detects edits to past records; it is not an external, tamper-proof anchor.")
             elif v:
                 v2.error(f"Audit chain broken at event {v['first_bad_event_id']}: a past record was changed or removed.")
         st.dataframe(df, hide_index=True, width='stretch',
