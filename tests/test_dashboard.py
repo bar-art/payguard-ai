@@ -31,7 +31,7 @@ def test_dashboard_offline_shows_error():
 def test_dashboard_mandate_then_agent_purchase(backend):
     page = AppTest.from_file(str(DASHBOARD)).run(timeout=15)
     assert not page.exception
-    page.button[0].click().run(timeout=15)            # "Create mandate" form submit
+    next(b for b in page.button if b.label == 'Create mandate').click().run(timeout=15)
     assert backend.get('/mandates').json()
     page.run(timeout=15)
     agent = next(b for b in page.button if b.label == 'Run shopping agent')
@@ -58,3 +58,12 @@ def test_dashboard_finishes_paypal_return(backend):
     assert not page.exception
     assert backend.get(f"/purchases/{p['purchase_id']}").json()['status'] == 'captured'
     assert any('Back from PayPal' in s.value for s in page.success)
+
+
+def test_three_case_demo(backend):
+    page = AppTest.from_file(str(DASHBOARD)).run(timeout=15)
+    next(b for b in page.button if 'demo' in b.label).click().run(timeout=15)
+    assert not page.exception
+    decisions = [p['decision'] for p in reversed(backend.get('/purchases').json())]
+    # The AI reviewer is off in this test. Rules alone let the wrong item through, which is why the reviewer exists.
+    assert decisions == ['allow', 'allow', 'block']

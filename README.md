@@ -153,6 +153,11 @@ file resets on restart, which is fine for a demo.
 
 ### Demo
 
+The fastest way in is **▶ Run the 3-case demo** at the top of the page. It creates a permission for
+"wireless noise-cancelling headphones, under $150" and replays three agent purchases: the right
+headphones (**ALLOW**), wired kids' headphones that pass every rule (**REVIEW**, because only the AI
+reviewer sees the mismatch), and a bundle chosen because of a hidden instruction (**BLOCK**). Then step through it by hand:
+
 1. **Mandate:** keep the default ("wireless noise-cancelling headphones, under $150", two approved stores) and click **Create mandate**.
 2. **Agent:** click **Run shopping agent**. A matching purchase is allowed; click **Approve in PayPal**,
    log in as the sandbox buyer, and you come back to a **captured** payment.
@@ -177,7 +182,7 @@ The demo catalog (`data/catalog.json`) uses fictional merchants on `.example` do
 python -m pytest -q
 ```
 
-38 offline tests (no network, no keys) cover:
+39 offline tests (no network, no keys) cover:
 
 - the rules, including the prompt-injection patterns
 - that the AI can't lower risk and that the guard fails closed
@@ -196,7 +201,7 @@ python -m pytest -q
 | POST | `/mandates` | create a mandate |
 | POST | `/purchases` | **the endpoint an agent calls to pay** |
 | POST | `/agent/shop` | let the demo agent pick from the catalog and pay (optionally with your own product, or forced) |
-| POST | `/agent/scenario/{id}` | replay a scripted agent purchase (`hijacked`, `wrong-item`, `unknown-store`, `over-cap`) |
+| POST | `/agent/scenario/{id}` | replay a scripted agent purchase (`good-buy`, `hijacked`, `wrong-item`, `unknown-store`, `over-cap`) |
 | GET | `/purchases`, `/purchases/{id}` | purchases with guard result and audit events |
 | POST | `/purchases/{id}/review` | human approve (capture) or reject (void), reason required |
 | GET | `/paypal/return`, `/paypal/cancel` | PayPal redirects after buyer approval |

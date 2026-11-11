@@ -67,6 +67,13 @@
   ],
   "scenarios": [
     {
+      "id": "good-buy",
+      "label": "Good purchase",
+      "product_id": "ha-anc200",
+      "rationale": "Wireless noise-cancelling headphones from an approved store, under the $150 cap.",
+      "explain": "Exactly what the person asked for."
+    },
+    {
       "id": "hijacked",
       "label": "Hijacked agent",
       "product_id": "dv-bundle",

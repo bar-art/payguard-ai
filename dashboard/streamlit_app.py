@@ -17,6 +17,13 @@ st.markdown("""
   border-radius: 18px; padding: 26px 30px 22px; margin-bottom: 18px; display: flex; gap: 22px; align-items: center;}
 .pg-hero img {width: 68px; height: 68px; flex: none;}
 .pg-hero h1 {color: #fff; font-size: 2.1rem; margin: 0; padding: 0; line-height: 1.15;}
+.pg-demo {display: inline-block; margin-left: 12px; vertical-align: middle; font-size: .72rem; font-weight: 700;
+  letter-spacing: .06em; background: #FDE68A; color: #78350F; border-radius: 999px; padding: 3px 10px;}
+.pg-mini {border-radius: 12px; padding: 12px 14px; height: 100%;}
+.pg-mini .tag {display: inline-block; font-weight: 800; color: #fff; border-radius: 8px; padding: 3px 10px; font-size: .9rem;}
+.pg-mini .case {font-size: .78rem; text-transform: uppercase; letter-spacing: .07em; color: #64748B; font-weight: 700; margin-bottom: 6px;}
+.pg-mini .item {font-weight: 650; margin: 8px 0 4px; color: #0B1F33;}
+.pg-mini .why {font-size: .88rem; color: #334155;}
 .pg-hero p {color: #CFE7E4; margin: 4px 0 12px; font-size: 1.05rem;}
 .pg-flow {display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .82rem;}
 .pg-flow span.s {background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); border-radius: 999px;
@@ -59,15 +66,15 @@ section[data-testid="stSidebar"] strong, section[data-testid="stSidebar"] small 
 </style>
 """, unsafe_allow_html=True)
 
-DECISION = {'allow': ('ALLOW', 'v-allow', 'Captured automatically after the buyer approves at PayPal'),
+DECISION = {'allow': ('ALLOW', 'v-allow', 'Will be paid automatically after the buyer approves at PayPal'),
             'review': ('REVIEW', 'v-review', 'Funds will be held at PayPal until a human captures or voids them'),
             'block': ('BLOCK', 'v-block', 'Stopped before any PayPal order was created')}
 STATUS_LABEL = {
     'blocked': 'Blocked, no PayPal order', 'awaiting_buyer': 'Waiting for buyer approval at PayPal',
-    'in_review': 'Authorized, funds held for review', 'captured': 'Captured', 'voided': 'Authorization voided',
+    'in_review': 'Funds held, waiting for a human', 'captured': 'Paid (captured)', 'voided': 'Hold released (voided)',
     'cancelled': 'Buyer cancelled', 'error': 'PayPal error',
 }
-STEPS = ['Agent request', 'PayGuard check', 'PayPal order', 'Funds authorized', 'Captured']
+STEPS = ['Agent request', 'PayGuard check', 'PayPal order', 'Funds held', 'Paid']
 
 
 def esc(text) -> str:
@@ -90,7 +97,7 @@ def stepper(status: str) -> str:
     """Where the money is: each step done, current, failed or not reached."""
     at, kind, label = {'blocked': (1, 'fail', 'Blocked'), 'awaiting_buyer': (2, 'cur', 'Buyer approval'),
                        'in_review': (4, 'cur', 'Human review'), 'captured': (5, 'done', None),
-                       'voided': (4, 'fail', 'Voided'), 'cancelled': (2, 'fail', 'Buyer cancelled'),
+                       'voided': (4, 'fail', 'Hold released'), 'cancelled': (2, 'fail', 'Buyer cancelled'),
                        'error': (2, 'fail', 'PayPal error')}.get(status, (0, 'cur', None))
     cells = []
     for i, name in enumerate(STEPS):
@@ -179,17 +186,17 @@ with st.sidebar:
     st.caption('A payment firewall for AI shopping agents')
     live = cfg['paypal_mode'] == 'sandbox'
     st.markdown(f"**PayPal** &nbsp;<span class='pg-pill {'pg-ok' if live else 'pg-off'}'>"
-                f"{'Sandbox · live API' if live else 'Simulated'}</span>", unsafe_allow_html=True)
+                f"{'Sandbox · test payments only' if live else 'Simulated'}</span>", unsafe_allow_html=True)
     st.markdown(f"**AI reviewer** &nbsp;<span class='pg-pill {'pg-ok' if cfg['ai_model'] else 'pg-off'}'>"
                 f"{esc(cfg['ai_model'] or 'off · rules only')}</span>", unsafe_allow_html=True)
     st.divider()
-    st.markdown('**Try it**\n1. Create a mandate\n2. Run the shopping agent\n3. Replay an agent gone wrong\n'
+    st.markdown('**Try it**\n1. Create a shopping permission\n2. Run the shopping agent\n3. Replay an agent gone wrong\n'
                 '4. Write your own injection in the red-team playground\n5. Verify the audit chain in Ledger')
     st.divider()
     st.caption('Sandbox only. Approve payments with a PayPal **sandbox** buyer account, never a real one.')
 
 st.markdown(f"""<div class="pg-hero"><img src="data:image/svg+xml;base64,{LOGO}">
-  <div><h1>PayGuard AI</h1>
+  <div><h1>PayGuard AI <span class="pg-demo">DEMO · TEST PAYMENTS ONLY</span></h1>
   <p>Let an AI agent shop for you, without handing it your wallet.</p>
   <div class="pg-flow"><span class="s">Agent wants to pay</span><span class="a">→</span>
   <span class="s">Rules + AI check the mandate</span><span class="a">→</span>
@@ -218,14 +225,62 @@ if returned:
         st.query_params.clear()
         st.rerun()
 
+DEMO_CASES = [('good-buy', 'Asked for: wireless ANC headphones'), ('wrong-item', 'Agent picked the wrong thing'),
+              ('hijacked', 'Agent obeyed a hidden instruction')]
+
+
+def mini_card(p: dict, case: str) -> str:
+    tag, cls, _ = DECISION[p['decision']]
+    guard = p['guard']
+    ai = guard.get('ai') or {}
+    if guard['hard_blocks']:
+        why = guard['hard_blocks'][0].split(': ', 1)[-1]
+        why = why[:1].upper() + why[1:] + '.'
+    elif ai.get('summary'):
+        why = 'AI: ' + ai['summary'].split('. ')[0].rstrip('.') + '.'
+    else:
+        why = DECISION[p['decision']][2]
+    return (f'<div class="pg-mini {cls}"><div class="case">{esc(case)}</div><span class="tag" '
+            f'style="background:{dict(allow="#059669", review="#D97706", block="#DC2626")[p["decision"]]}">{tag}</span>'
+            f'<div class="item">{esc(p["intent"]["item"])} · ${float(p["amount"]):,.2f}</div>'
+            f'<div class="why">{esc(why)}</div></div>')
+
+
+if not returned:
+    with st.container(border=True):
+        d1, d2 = st.columns([3, 1.2])
+        d1.markdown('**See it in 30 seconds.** One click creates a shopping permission ("wireless noise-cancelling '
+                    'headphones, under $150") and replays three agent purchases through PayGuard and PayPal.')
+        if d2.button('▶ Run the 3-case demo', type='primary', width='stretch'):
+            with st.spinner('Three purchases through rules, the AI reviewer and PayPal...'):
+                m = api('POST', '/mandates', json={
+                    'owner': 'demo', 'instruction': 'Buy wireless noise-cancelling headphones for my commute, under $150.',
+                    'max_per_purchase': '150.00', 'budget_total': '500.00', 'currency': 'USD',
+                    'allowed_categories': ['audio', 'electronics'],
+                    'allowed_merchants': ['harbor-audio.example', 'pixel-lane.example']})
+                if m:
+                    runs = [api('POST', f'/agent/scenario/{sid}', params={'mandate_id': m['mandate_id']})
+                            for sid, _ in DEMO_CASES]
+                    if all(runs):
+                        st.session_state['demo'] = [r['purchase_id'] for r in runs]
+        if st.session_state.get('demo'):
+            cols = st.columns(3)
+            for col, pid, (_, case) in zip(cols, st.session_state['demo'], DEMO_CASES):
+                p = api('GET', f'/purchases/{pid}')
+                if p:
+                    col.markdown(mini_card(p, case), unsafe_allow_html=True)
+            st.caption('Same rules for everyone. Only the AI reviewer could tell that wired kids\' headphones are not '
+                       'what was asked for. Open the Ledger tab for the full reasoning, the PayPal ids and the audit '
+                       'chain, or the Agent tab to approve a payment at PayPal.')
+
 mandates = api('GET', '/mandates') or []
-tab_m, tab_a, tab_r, tab_l = st.tabs(['① Mandate', '② Agent', '③ Review queue', '④ Ledger'])
+tab_m, tab_a, tab_r, tab_l = st.tabs(['① Shopping permission', '② Agent', '③ Review queue', '④ Ledger'])
 
 with tab_m:
     form_col, info_col = st.columns([1.6, 1])
     with form_col:
         with st.form('mandate'):
-            st.markdown('**What may your agent buy?**')
+            st.markdown('**What may your agent buy?** A *mandate*: your words plus hard limits.')
             owner = st.text_input('Owner', 'alex')
             instruction = st.text_area('Instruction to the agent',
                                        'Buy wireless noise-cancelling headphones for my commute, under $150.')
@@ -335,8 +390,8 @@ with tab_r:
                 reviewer = c1.text_input('Reviewer', 'alex')
                 reason = c2.text_input('Reason (required)')
                 b1, b2 = st.columns(2)
-                approve = b1.form_submit_button('Approve → capture', type='primary', width='stretch')
-                reject = b2.form_submit_button('Reject → void', width='stretch')
+                approve = b1.form_submit_button('Approve: complete the payment (capture)', type='primary', width='stretch')
+                reject = b2.form_submit_button('Reject: release the hold (void)', width='stretch')
                 if approve or reject:
                     if not reason.strip():
                         st.error('A reason is required for the audit trail.')
