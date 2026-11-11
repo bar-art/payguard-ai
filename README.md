@@ -68,7 +68,13 @@ The design rules:
   at agents; the reviewer catches the subtle ones. Either one blocks the purchase.
 
 The reviewer works with any OpenAI-compatible chat completions endpoint (`LLM_BASE_URL`,
-`LLM_API_KEY`, `LLM_MODEL`). Development used [model and gateway: fill in].
+`LLM_API_KEY`, `LLM_MODEL`). Development used **Claude Haiku 5.5 through OpenRouter**
+(`LLM_BASE_URL=https://openrouter.ai/api/v1`, `LLM_MODEL=anthropic/claude-haiku-5.5`).
+
+Before picking it, four models were scored on five reviewer cases (a clean purchase, the wrong item
+from an approved store, a hijacked agent, an unknown store, and an injection worded to slip past the
+regex), with `scripts/eval_reviewer.py`. All four were correct on all five. Claude Haiku 5.5 was the fastest, at 1.6–3.5 s per review.
+The others were GPT-6 Luna, DeepSeek V4.1 Flash and Qwen 3.8 Flash. Each costs a fraction of a cent per review.
 
 ## Risk rules (`app/risk_engine.py`)
 
@@ -118,14 +124,16 @@ python -m streamlit run dashboard/streamlit_app.py --server.address 127.0.0.1
 Open http://127.0.0.1:8501. The dashboard sidebar shows whether PayPal is live sandbox or simulated, and
 which model reviews purchases. API docs: http://127.0.0.1:8000/docs.
 
-### Demo in four clicks
+### Demo in five clicks
 
 1. **Mandate:** keep the default ("wireless noise-cancelling headphones, under $150", two approved stores) and click **Create mandate**.
 2. **Agent:** click **Run shopping agent**. A matching purchase is allowed; click **Approve in PayPal**,
    log in as the sandbox buyer, and you come back to a **captured** payment.
 3. Click **Unknown store**. The headphones look fine, but the store isn't approved, so the purchase is held for **review**. Approve
    at PayPal, then go to the **Review queue** and capture it or void it, with a reason.
-4. Click **Hijacked agent**. The agent obeyed a hidden instruction on a merchant page. PayGuard
+4. Click **Wrong item**. Every rule passes, since it's cheap, from an approved store, and in the audio category, but it is wired
+   kids' headphones. Only the AI reviewer sees that this isn't what was asked for, and it holds the purchase for review.
+5. Click **Hijacked agent**. The agent obeyed a hidden instruction on a merchant page. PayGuard
    **blocks** it before any PayPal order exists.
 
 The demo catalog (`data/catalog.json`) uses fictional merchants on `.example` domains.
@@ -152,7 +160,7 @@ python -m pytest -q
 | POST | `/mandates` | create a mandate |
 | POST | `/purchases` | **the endpoint an agent calls to pay** |
 | POST | `/agent/shop` | let the demo agent pick from the catalog and pay |
-| POST | `/agent/scenario/{id}` | replay a scripted agent purchase (`hijacked`, `unknown-store`, `over-cap`) |
+| POST | `/agent/scenario/{id}` | replay a scripted agent purchase (`hijacked`, `wrong-item`, `unknown-store`, `over-cap`) |
 | GET | `/purchases`, `/purchases/{id}` | purchases with guard result and audit events |
 | POST | `/purchases/{id}/review` | human approve (capture) or reject (void), reason required |
 | GET | `/paypal/return`, `/paypal/cancel` | PayPal redirects after buyer approval |
