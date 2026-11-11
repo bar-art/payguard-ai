@@ -222,11 +222,14 @@ class GuardService:
         d['guard'] = json.loads(d['guard'])
         return d
 
+    def _events(self, conn, purchase_id: str) -> list[dict]:
+        return [dict(e, detail=json.loads(e['detail'])) for e in conn.execute(
+            'SELECT actor, event, detail, created_at FROM events WHERE purchase_id=? ORDER BY id', (purchase_id,))]
+
     def get_purchase(self, purchase_id: str) -> dict:
         with self.db.connect() as conn:
             d = self._row_to_dict(self._purchase_row(conn, purchase_id=purchase_id))
-            d['events'] = [dict(e, detail=json.loads(e['detail'])) for e in conn.execute(
-                'SELECT actor, event, detail, created_at FROM events WHERE purchase_id=? ORDER BY id', (purchase_id,))]
+            d['events'] = self._events(conn, purchase_id)
         return d
 
     def list_purchases(self, status: str | None = None) -> list[dict]:
@@ -235,4 +238,7 @@ class GuardService:
                 rows = conn.execute('SELECT * FROM purchases WHERE status=? ORDER BY created_at DESC', (status,))
             else:
                 rows = conn.execute('SELECT * FROM purchases ORDER BY created_at DESC')
-            return [self._row_to_dict(r) for r in rows]
+            out = [self._row_to_dict(r) for r in rows.fetchall()]
+            for d in out:
+                d['events'] = self._events(conn, d['purchase_id'])
+            return out

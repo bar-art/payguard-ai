@@ -252,6 +252,8 @@ def test_review_path_holds_funds_until_a_human_decides(make_client):
                       json={'reviewer': 'sam', 'action': 'reject', 'reason': 'x'}).status_code == 409
 
         q = approve_at_paypal(c, buy(c, mid, merchant='sound-outlet.example'))
+        queue = c.get('/purchases?status=in_review').json()
+        assert [x['purchase_id'] for x in queue] == [q['purchase_id']] and queue[0]['events']
         q = c.post(f"/purchases/{q['purchase_id']}/review",
                    json={'reviewer': 'sam', 'action': 'reject', 'reason': 'Not approved store'}).json()
         assert q['status'] == 'voided'

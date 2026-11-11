@@ -89,6 +89,7 @@ class PayPalSandbox:
             }],
             'payment_source': {'paypal': {'experience_context': {
                 'brand_name': 'PayGuard demo',
+                'locale': 'en-US',
                 'shipping_preference': 'NO_SHIPPING',
                 'user_action': 'CONTINUE',  # the payment completes after the guard, not on this page
                 'return_url': return_url,
