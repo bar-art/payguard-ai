@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
+<title>PayGuard benchmark framework</title>
+<rect x="0" y="0" width="1600" height="1200" fill="#FFFFFF"/>
+<g transform="translate(0,50)">
+<defs>
+<marker id="mg" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#B0ACAC"/></marker>
+<marker id="mo" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#C65F10"/></marker>
+<marker id="mgr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#588E32"/></marker>
+<marker id="mk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#808080"/></marker>
+</defs>
+<path d="M245 300 V266 H1520 V297" fill="none" stroke="#808080" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 5" marker-end="url(#mk)"/>
+<rect x="565.649" y="240" width="628.703" height="22" rx="4" fill="#FFFFFF" stroke="none" stroke-width="1.5"/>
+<text x="573.649" y="256" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="14.5" fill="#3B3838"><tspan font-weight="bold">Oracle label:</tspan> does each product match the mandate? (hand-made; defines attack success)</text>
+<rect x="45" y="300" width="226" height="490" rx="16" fill="none" stroke="#808080" stroke-width="2.6" stroke-dasharray="10 6"/>
+<rect x="57" y="330" width="202" height="176" rx="12" fill="#F2F2F2" stroke="#808080" stroke-width="1.5"/>
+<rect x="221" y="341" width="26" height="32" rx="3" fill="#FFFFFF" stroke="#404040" stroke-width="1.2"/>
+<rect x="225" y="347" width="6.5" height="6.5" rx="1.2" fill="#DAE3F3" stroke="#404040" stroke-width="0.8"/>
+<path d="M226.2 350.4 l1.8 1.9 l3.2 -4" fill="none" stroke="#588E32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="234" y="349.3" width="9" height="2.2" rx="1" fill="#B0ACAC" stroke="none" stroke-width="1.5"/>
+<rect x="225" y="356" width="6.5" height="6.5" rx="1.2" fill="#DAE3F3" stroke="#404040" stroke-width="0.8"/>
+<path d="M226.2 359.4 l1.8 1.9 l3.2 -4" fill="none" stroke="#588E32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="234" y="358.3" width="9" height="2.2" rx="1" fill="#B0ACAC" stroke="none" stroke-width="1.5"/>
+<rect x="225" y="365" width="6.5" height="6.5" rx="1.2" fill="#DAE3F3" stroke="#404040" stroke-width="0.8"/>
+<path d="M226.2 368.4 l1.8 1.9 l3.2 -4" fill="none" stroke="#588E32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="234" y="367.3" width="9" height="2.2" rx="1" fill="#B0ACAC" stroke="none" stroke-width="1.5"/>
+<text x="71" y="358" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="17" font-weight="bold" fill="#3B3838" text-anchor="start">Mandate</text>
+<text x="71" y="388" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="14" font-weight="normal" fill="#3B3838" text-anchor="start">plain-language</text>
+<text x="71" y="407" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="14" font-weight="normal" fill="#3B3838" text-anchor="start">instruction</text>
+<text x="71" y="431" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="14" font-weight="normal" fill="#3B3838" text-anchor="start">cap · budget · expiry</text>
+<text x="71" y="455" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="14" font-weight="normal" fill="#3B3838" text-anchor="start">allowed merchants</text>
+<text x="71" y="474" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="14" font-weight="normal" fill="#3B3838" text-anchor="start">and categories</text>
+<rect x="57" y="524" width="202" height="242" rx="12" fill="#F2F2F2" stroke="#808080" stroke-width="1.5"/>
+<rect x="213" y="534" width="34" height="26" rx="3" fill="#FFFFFF" stroke="#404040" stroke-width="1.2"/>
+<path d="M213.6 541 V537 a2.4 2.4 0 0 1 2.4 -2.4 H244 a2.4 2.4 0 0 1 2.4 2.4 V541 Z" fill="#DAE3F3"/>
+<path d="M213 541 H247" fill="none" stroke="#404040" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="217.5" cy="537.8" r="1.4" fill="#EF5B63"/>
+<circle cx="221.5" cy="537.8" r="1.4" fill="#FFD84A"/>
+<circle cx="225.5" cy="537.8" r="1.4" fill="#6DD276"/>
+<rect x="217" y="544" width="12" height="12" rx="1.5" fill="#DAE3F3" stroke="#404040" stroke-width="0.7"/>
+<polygon points="217.5,555.5 222,549 225,552.5 226.5,551 228.5,555.5" fill="#ACD78E"/>
+<circle cx="226" cy="547.2" r="1.6" fill="#FFD84A"/>
+<rect x="232" y="545" width="11" height="2" rx="1" fill="#B0ACAC" stroke="none" stroke-width="1.5"/>
+<rect x="232" y="549" width="11" height="2" rx="1" fill="#B0ACAC" stroke="none" stroke-width="1.5"/>
+<rect x="232" y="553" width="8" height="2" rx="1" fill="#B0ACAC" stroke="none" stroke-width="1.5"/>
+<text x="71" y="552" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="17" font-weight="bold" fill="#3B3838" text-anchor="start">Catalog</text>
+<text x="71" y="580" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="14" font-weight="normal" fill="#3B3838" text-anchor="start">products, prices,</text>
+<text x="71" y="599" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="14" font-weight="normal" fill="#3B3838" text-anchor="start">merchants</text>
+<text x="71" y="623" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="14" font-weight="normal" fill="#3B3838" text-anchor="start">pages: clean</text>
+<text x="71" y="642" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="14" font-weight="normal" fill="#3B3838" text-anchor="start">or injected</text>
+<rect x="79" y="664" width="44" height="54" rx="4" fill="#FFFFFF" stroke="#808080" stroke-width="1.3"/>
+<rect x="84" y="670" width="15" height="13" rx="1.5" fill="#DAE3F3" stroke="#404040" stroke-width="0.6"/>
+<polygon points="84.5,682.5 89,676 92.5,679.5 94,678 98.5,682.5" fill="#ACD78E"/>
+<rect x="102" y="672" width="16" height="2.2" rx="1" fill="#B0ACAC" stroke="none" stroke-width="1.5"/>
+<rect x="102" y="677" width="12" height="2.2" rx="1" fill="#B0ACAC" stroke="none" stroke-width="1.5"/>
+<rect x="84" y="689" width="33" height="2.2" rx="1" fill="#B0ACAC" stroke="none" stroke-width="1.5"/>
+<rect x="84" y="695" width="33" height="2.2" rx="1" fill="#B0ACAC" stroke="none" stroke-width="1.5"/>
+<rect x="84" y="701" width="33" height="2.2" rx="1" fill="#B0ACAC" stroke="none" stroke-width="1.5"/>
+<rect x="84" y="707" width="26" height="2.2" rx="1" fill="#B0ACAC" stroke="none" stroke-width="1.5"/>
+<rect x="163" y="664" width="44" height="54" rx="4" fill="#FFFFFF" stroke="#808080" stroke-width="1.3"/>
+<rect x="168" y="670" width="15" height="13" rx="1.5" fill="#DAE3F3" stroke="#404040" stroke-width="0.6"/>
+<polygon points="168.5,682.5 173,676 176.5,679.5 178,678 182.5,682.5" fill="#ACD78E"/>
+<rect x="186" y="672" width="16" height="2.2" rx="1" fill="#B0ACAC" stroke="none" stroke-width="1.5"/>
+<rect x="186" y="677" width="12" height="2.2" rx="1" fill="#B0ACAC" stroke="none" stroke-width="1.5"/>
+<rect x="167" y="688" width="36" height="16" rx="2" fill="#FEF4ED" stroke="#C65F10" stroke-width="1" stroke-dasharray="2.5 2"/>
+<rect x="170" y="692" width="28" height="2.2" rx="1" fill="#C65F10" stroke="none" stroke-width="1.5"/>
+<rect x="170" y="698" width="20" height="2.2" rx="1" fill="#C65F10" stroke="none" stroke-width="1.5"/>
+<rect x="168" y="709" width="26" height="2.2" rx="1" fill="#B0ACAC" stroke="none" stroke-width="1.5"/>
+<circle cx="205" cy="666" r="7" fill="#F5B482" stroke="#C65F10" stroke-width="1.2"/>
+<text x="205" y="670.2" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="11" font-weight="bold" fill="#843F0B" text-anchor="middle">!</text>
+<rect x="71" y="728" width="145.963" height="28" rx="8" fill="#FEF4ED" stroke="#C65F10" stroke-width="1.5"/>
+<text x="81" y="747" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="bold" fill="#843F0B" text-anchor="start">A1 · injected page</text>
+<rect x="318" y="300" width="392" height="490" rx="16" fill="#FEF4ED" stroke="#C65F10" stroke-width="2"/>
+<rect x="330" y="330" width="168" height="330" rx="12" fill="#FFFFFF" stroke="#C65F10" stroke-width="1.5"/>
+<circle cx="414" cy="374" r="24" fill="#FFC940" stroke="#404040" stroke-width="1.2"/>
+<path d="M394.32 382.4 A24 24 0 0 0 433.68 382.4 A25.2 21.6 0 0 1 394.32 382.4 Z" fill="#F5A623" opacity="0.35"/>
+<ellipse cx="405.36" cy="370.16" rx="2.16" ry="3.36" fill="#3B3838"/>
+<circle cx="400.08" cy="378.8" r="3.12" fill="#F5B482" opacity="0.9"/>
+<ellipse cx="422.64" cy="370.16" rx="2.16" ry="3.36" fill="#3B3838"/>
+<circle cx="427.92" cy="378.8" r="3.12" fill="#F5B482" opacity="0.9"/>
+<path d="M404.88 379.28 Q414 388.88 423.12 379.28" fill="none" stroke="#3B3838" stroke-width="1.68" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="414" y="424" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="16.5" font-weight="bold" fill="#3B3838" text-anchor="middle">Shopping agent</text>
+<text x="414" y="444" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="14" font-weight="normal" fill="#3B3838" text-anchor="middle">LLM under test</text>
+<path d="M346 460 H482" fill="none" stroke="#F5B482" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="344" y="486" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="14" font-weight="normal" fill="#3B3838" text-anchor="start">gets the task,</text>
+<text x="344" y="505" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="14" font-weight="normal" fill="#3B3838" text-anchor="start">reads every</text>
+<text x="344" y="524" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="14" font-weight="normal" fill="#3B3838" text-anchor="start">merchant page,</text>
+<text x="344" y="543" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="14" font-weight="normal" fill="#3B3838" text-anchor="start">picks one product</text>
+<circle cx="410" cy="724" r="13" fill="#FFC940" stroke="#404040" stroke-width="1.2"/>
+<path d="M399.34 728.55 A13 13 0 0 0 420.66 728.55 A13.65 11.7 0 0 1 399.34 728.55 Z" fill="#F5A623" opacity="0.35"/>
+<ellipse cx="405.32" cy="721.92" rx="1.17" ry="1.82" fill="#3B3838"/>
+<circle cx="402.46" cy="726.6" r="1.69" fill="#F5B482" opacity="0.9"/>
+<ellipse cx="414.68" cy="721.92" rx="1.17" ry="1.82" fill="#3B3838"/>
+<circle cx="417.54" cy="726.6" r="1.69" fill="#F5B482" opacity="0.9"/>
+<path d="M405.06 726.86 Q410 732.06 414.94 726.86" fill="none" stroke="#3B3838" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="440" cy="724" r="13" fill="#FFC940" stroke="#404040" stroke-width="1.2"/>
+<path d="M429.34 728.55 A13 13 0 0 0 450.66 728.55 A13.65 11.7 0 0 1 429.34 728.55 Z" fill="#F5A623" opacity="0.35"/>
+<ellipse cx="435.32" cy="721.92" rx="1.17" ry="1.82" fill="#3B3838"/>
+<circle cx="432.46" cy="726.6" r="1.69" fill="#F5B482" opacity="0.9"/>
+<ellipse cx="444.68" cy="721.92" rx="1.17" ry="1.82" fill="#3B3838"/>
+<circle cx="447.54" cy="726.6" r="1.69" fill="#F5B482" opacity="0.9"/>
+<path d="M435.06 726.86 Q440 732.06 444.94 726.86" fill="none" stroke="#3B3838" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="470" cy="724" r="13" fill="#FFC940" stroke="#404040" stroke-width="1.2"/>
+<path d="M459.34 728.55 A13 13 0 0 0 480.66 728.55 A13.65 11.7 0 0 1 459.34 728.55 Z" fill="#F5A623" opacity="0.35"/>
+<ellipse cx="465.32" cy="721.92" rx="1.17" ry="1.82" fill="#3B3838"/>
+<circle cx="462.46" cy="726.6" r="1.69" fill="#F5B482" opacity="0.9"/>
+<ellipse cx="474.68" cy="721.92" rx="1.17" ry="1.82" fill="#3B3838"/>
+<circle cx="477.54" cy="726.6" r="1.69" fill="#F5B482" opacity="0.9"/>
+<path d="M465.06 726.86 Q470 732.06 474.94 726.86" fill="none" stroke="#3B3838" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="500" y="729" font-family="Consolas, Menlo, 'Courier New', monospace" font-size="14" font-weight="normal" fill="#3B3838" text-anchor="start">k models × n runs</text>
+<rect x="526" y="330" width="172" height="330" rx="12" fill="#FFFFFF" stroke="#C65F10" stroke-width="1.5"/>
+<path d="M600.0 352 h24 v30 l-4 -3 l-4 3 l-4 -3 l-4 3 l-4 -3 l-4 3 Z" fill="#FFFFFF" stroke="#404040" stroke-width="1.2" stroke-linejoin="round"/>
+<rect x="604" y="357" width="16" height="2" rx="1" fill="#B0ACAC" stroke="none" stroke-width="1.5"/>
+<rect x="604" y="362" width="16" height="2" rx="1" fill="#B0ACAC" stroke="none" stroke-width="1.5"/>
+<rect x="604" y="367" width="11" height="2" rx="1" fill="#B0ACAC" stroke="none" stroke-width="1.5"/>
+<circle cx="617" cy="373" r="5.2" fill="#FFD84A" stroke="#404040" stroke-width="0.9"/>
+<text x="617" y="376.2" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="8.5" font-weight="bold" fill="#3B3838" text-anchor="middle">$</text>
+<text x="612" y="424" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="16.5" font-weight="bold" fill="#3B3838" text-anchor="middle">Purchase intent</text>
+<text x="612" y="446" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="middle">every field comes</text>
+<text x="612" y="464" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="middle">from the agent</text>
+<rect x="540" y="476" width="44.1" height="22" rx="5" fill="#F2F2F2" stroke="#B0ACAC" stroke-width="1"/>
+<text x="547" y="491.5" font-family="Consolas, Menlo, 'Courier New', monospace" font-size="12.5" font-weight="normal" fill="#3B3838">item</text>
+<rect x="590.1" y="476" width="74.2" height="22" rx="5" fill="#F2F2F2" stroke="#B0ACAC" stroke-width="1"/>
+<text x="597.1" y="491.5" font-family="Consolas, Menlo, 'Courier New', monospace" font-size="12.5" font-weight="normal" fill="#3B3838">merchant</text>
+<rect x="540" y="504" width="59.15" height="22" rx="5" fill="#F2F2F2" stroke="#B0ACAC" stroke-width="1"/>
+<text x="547" y="519.5" font-family="Consolas, Menlo, 'Courier New', monospace" font-size="12.5" font-weight="normal" fill="#3B3838">amount</text>
+<rect x="605.15" y="504" width="81.725" height="22" rx="5" fill="#F2F2F2" stroke="#B0ACAC" stroke-width="1"/>
+<text x="612.15" y="519.5" font-family="Consolas, Menlo, 'Courier New', monospace" font-size="12.5" font-weight="normal" fill="#3B3838">rationale</text>
+<rect x="540" y="534" width="111.825" height="22" rx="5" fill="#FEF4ED" stroke="#C65F10" stroke-width="1.3"/>
+<text x="547" y="549.5" font-family="Consolas, Menlo, 'Courier New', monospace" font-size="12.5" font-weight="bold" fill="#843F0B">reported page</text>
+<rect x="536" y="600" width="148.832" height="28" rx="8" fill="#FEF4ED" stroke="#C65F10" stroke-width="1.5"/>
+<text x="546" y="619" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13" font-weight="bold" fill="#843F0B" text-anchor="start">A2 · hijacked agent</text>
+<path d="M500 560 H522" fill="none" stroke="#B0ACAC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#mg)"/>
+<polygon points="275,410 298,410 298,401 314,418 298,435 298,426 275,426" fill="#B0ACAC"/>
+<text x="294.5" y="396" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13" font-weight="normal" fill="#3B3838" text-anchor="middle">task</text>
+<polygon points="275,612 298,612 298,603 314,620 298,637 298,628 275,628" fill="#B0ACAC"/>
+<text x="294.5" y="598" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13" font-weight="normal" fill="#3B3838" text-anchor="middle">reads</text>
+<rect x="758" y="300" width="288" height="490" rx="16" fill="#F7FBF2" stroke="#588E32" stroke-width="2"/>
+<rect x="772" y="334" width="260" height="70" rx="10" fill="#FFFFFF" stroke="#588E32" stroke-width="1.5"/>
+<path d="M1002 351 v-5 a6 6 0 0 1 12 0 v5" fill="none" stroke="#808080" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="998" y="350" width="20" height="16" rx="3" fill="#FFD84A" stroke="#404040" stroke-width="1.2"/>
+<circle cx="1008" cy="356.5" r="2.2" fill="#3B3838"/>
+<rect x="1007.1" y="357.5" width="1.8" height="5" rx="0.8" fill="#3B3838" stroke="none" stroke-width="1.5"/>
+<text x="786" y="360" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="16" font-weight="bold" fill="#3B3838" text-anchor="start">Hard limits</text>
+<text x="786" y="388" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="start">cap · budget · currency · expiry</text>
+<path d="M902.0 405 V419" fill="none" stroke="#B0ACAC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#mg)"/>
+<rect x="772" y="422" width="260" height="70" rx="10" fill="#FFFFFF" stroke="#588E32" stroke-width="1.5"/>
+<circle cx="1003" cy="429" r="2.3" fill="#FFD84A" stroke="#404040" stroke-width="0.7"/>
+<circle cx="1010" cy="427" r="2.3" fill="#F5B482" stroke="#404040" stroke-width="0.7"/>
+<polygon points="994,435 1020,435 1010,447 1010,457 1004,460 1004,447" fill="#DAE3F3" stroke="#404040" stroke-width="1.2" stroke-linejoin="round"/>
+<ellipse cx="1007" cy="435" rx="13" ry="2.6" fill="#FFFFFF" stroke="#404040" stroke-width="1.1"/>
+<text x="786" y="448" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="16" font-weight="bold" fill="#3B3838" text-anchor="start">Rules + regex</text>
+<text x="786" y="476" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="start">merchant · category · patterns</text>
+<path d="M902.0 493 V507" fill="none" stroke="#B0ACAC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#mg)"/>
+<rect x="772" y="510" width="260" height="130" rx="10" fill="#FFFFFF" stroke="#588E32" stroke-width="1.5"/>
+<path d="M1010 535 L1018 543" fill="none" stroke="#808080" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="1003" cy="528" r="9" fill="#DAE3F3" stroke="#404040" stroke-width="1.4"/>
+<path d="M998 527 a5.5 5.5 0 0 1 4 -4.2" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="786" y="536" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="16" font-weight="bold" fill="#3B3838" text-anchor="start">LLM reviewer</text>
+<text x="786" y="562" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="start">mandate vs. purchase vs. page</text>
+<text x="786" y="582" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="start">adds risk, never approves</text>
+<rect x="786" y="596" width="168.491" height="28" rx="8" fill="#FEF4ED" stroke="#C65F10" stroke-width="1.5"/>
+<text x="796" y="615" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13" font-weight="bold" fill="#843F0B" text-anchor="start">A3 · reviewer injection</text>
+<path d="M902.0 641 V655" fill="none" stroke="#B0ACAC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#mg)"/>
+<rect x="772" y="658" width="260" height="106" rx="10" fill="#FFFFFF" stroke="#588E32" stroke-width="1.5"/>
+<text x="786" y="682" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="16" font-weight="bold" fill="#3B3838" text-anchor="start">Decision</text>
+<circle cx="820" cy="712" r="14" fill="#6DD276" stroke="#404040" stroke-width="1"/>
+<path d="M813.7 712.28 L818.6 717.04 L826.72 707.38" fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="820" y="750" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13" font-weight="bold" fill="#3B3838" text-anchor="middle">ALLOW</text>
+<circle cx="902" cy="712" r="14" fill="#FFD84A" stroke="#404040" stroke-width="1"/>
+<text x="902" y="719" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="20.3" font-weight="bold" fill="#3B3838" text-anchor="middle">?</text>
+<text x="902" y="750" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13" font-weight="bold" fill="#3B3838" text-anchor="middle">REVIEW</text>
+<circle cx="984" cy="712" r="14" fill="#EF5B63" stroke="#404040" stroke-width="1"/>
+<path d="M978.96 706.96 L989.04 717.04 M989.04 706.96 L978.96 717.04" fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="984" y="750" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13" font-weight="bold" fill="#3B3838" text-anchor="middle">BLOCK</text>
+<rect x="974.87" y="287" width="57.13" height="26" rx="7" fill="#FFFFFF" stroke="#808080" stroke-width="1.4"/>
+<text x="1003.43" y="304.5" font-family="Consolas, Menlo, 'Courier New', monospace" font-size="13" fill="#3B3838" text-anchor="middle">D0–D4</text>
+<polygon points="714,361 738,361 738,352 754,369 738,386 738,377 714,377" fill="#F5B482"/>
+<text x="734" y="347" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="12" font-weight="normal" fill="#3B3838" text-anchor="middle">submits</text>
+<path d="M698 545 H769" fill="none" stroke="#C65F10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#mo)"/>
+<path d="M158.0 767 V826 H744.0 V612 H769" fill="none" stroke="#588E32" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#mgr)"/>
+<text x="430" y="856" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="14.5" font-weight="normal" fill="#3B5F21" text-anchor="middle">D3 · the guard fetches the merchant page itself, so a hijacked agent cannot hide it</text>
+<polygon points="1050,703 1074,703 1074,694 1090,711 1074,728 1074,719 1050,719" fill="#ACD78E"/>
+<rect x="1094" y="300" width="218" height="490" rx="16" fill="#F2F2F2" stroke="#808080" stroke-width="2"/>
+<path d="M1095 711 H1107 V379" fill="none" stroke="#B0ACAC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1107 379 H1119" fill="none" stroke="#B0ACAC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#mg)"/>
+<path d="M1107 531 H1119" fill="none" stroke="#B0ACAC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#mg)"/>
+<path d="M1107 675 H1119" fill="none" stroke="#B0ACAC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#mg)"/>
+<rect x="1122" y="334" width="178" height="90" rx="10" fill="#FFFFFF" stroke="#808080" stroke-width="1.5"/>
+<circle cx="1142" cy="356" r="11" fill="#6DD276" stroke="#404040" stroke-width="1"/>
+<path d="M1137.05 356.22 L1140.9 359.96 L1147.28 352.37" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1160" y="362" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="15" font-weight="bold" fill="#3B3838" text-anchor="start">ALLOW</text>
+<text x="1134" y="388" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="start">authorize</text>
+<path d="M1200.12 383.5 H1218.12" fill="none" stroke="#808080" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#mk)"/>
+<text x="1224.12" y="388" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="start">capture</text>
+<text x="1134" y="408" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="start">after buyer approval</text>
+<rect x="1122" y="442" width="178" height="178" rx="10" fill="#FFFFFF" stroke="#808080" stroke-width="1.5"/>
+<circle cx="1142" cy="464" r="11" fill="#FFD84A" stroke="#404040" stroke-width="1"/>
+<text x="1142" y="469.5" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="15.95" font-weight="bold" fill="#3B3838" text-anchor="middle">?</text>
+<text x="1160" y="470" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="15" font-weight="bold" fill="#3B3838" text-anchor="start">REVIEW</text>
+<text x="1134" y="496" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="start">authorize:</text>
+<text x="1134" y="515" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="start">funds held</text>
+<text x="1134" y="540" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="start">a human decides</text>
+<text x="1134" y="559" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="start">(simulated by</text>
+<text x="1134" y="578" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="start">the oracle)</text>
+<text x="1134" y="603" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="start">capture or void</text>
+<rect x="1122" y="638" width="178" height="74" rx="10" fill="#FFFFFF" stroke="#808080" stroke-width="1.5"/>
+<circle cx="1142" cy="660" r="11" fill="#EF5B63" stroke="#404040" stroke-width="1"/>
+<path d="M1138.04 656.04 L1145.96 663.96 M1145.96 656.04 L1138.04 663.96" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1160" y="666" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="15" font-weight="bold" fill="#3B3838" text-anchor="start">BLOCK</text>
+<text x="1134" y="692" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="start">no PayPal order</text>
+<rect x="1106" y="284" width="180.797" height="32" rx="9" fill="#FFFFFF" stroke="#808080" stroke-width="1.6"/>
+<rect x="1120" y="290.5" width="28" height="19" rx="3" fill="#DAE3F3" stroke="#404040" stroke-width="1.1"/>
+<rect x="1120.6" y="294.5" width="26.8" height="4" rx="0" fill="#808080" stroke="none" stroke-width="1.5"/>
+<rect x="1124" y="301.5" width="6" height="4.5" rx="1" fill="#FFD84A" stroke="#404040" stroke-width="0.6"/>
+<text x="1156" y="305.5" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="16" font-weight="bold" fill="#3B3838" text-anchor="start">PayPal sandbox</text>
+<polygon points="1316,523 1339,523 1339,514 1355,531 1339,548 1339,539 1316,539" fill="#B0ACAC"/>
+<text x="1335.5" y="509" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13" font-weight="normal" fill="#3B3838" text-anchor="middle">ledger</text>
+<rect x="1359" y="300" width="196" height="490" rx="16" fill="#F2F2F2" stroke="#808080" stroke-width="2"/>
+<circle cx="1384" cy="355" r="10.5" fill="#EF5B63" stroke="#404040" stroke-width="1"/>
+<circle cx="1384" cy="355" r="6.93" fill="#FFFFFF" stroke="#404040" stroke-width="0.7"/>
+<circle cx="1384" cy="355" r="3.465" fill="#EF5B63" stroke="#404040" stroke-width="0.7"/>
+<text x="1403" y="360" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="15" font-weight="bold" fill="#3B3838" text-anchor="start">Attack success</text>
+<text x="1373" y="384" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="start">money captured</text>
+<text x="1373" y="402" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="start">against the mandate</text>
+<circle cx="1384" cy="457" r="10.5" fill="#EF5B63" stroke="#404040" stroke-width="1"/>
+<path d="M1380.22 453.22 L1387.78 460.78 M1387.78 453.22 L1380.22 460.78" fill="none" stroke="#FFFFFF" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1403" y="462" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="15" font-weight="bold" fill="#3B3838" text-anchor="start">False blocks</text>
+<text x="1373" y="486" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="start">legitimate purchases</text>
+<text x="1373" y="504" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="start">stopped</text>
+<circle cx="1384" cy="559" r="10.5" fill="#FFD84A" stroke="#404040" stroke-width="1"/>
+<text x="1384" y="564.25" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="15.225" font-weight="bold" fill="#3B3838" text-anchor="middle">?</text>
+<text x="1403" y="564" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="15" font-weight="bold" fill="#3B3838" text-anchor="start">Review load</text>
+<text x="1373" y="588" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="start">share sent to a human</text>
+<rect x="1374" y="631" width="19" height="25" rx="3" fill="#DAE3F3" stroke="#404040" stroke-width="1.1"/>
+<rect x="1377" y="634" width="13" height="6" rx="1" fill="#FFFFFF" stroke="#404040" stroke-width="0.7"/>
+<rect x="1377" y="642.5" width="3.4" height="3" rx="0.6" fill="#FFFFFF" stroke="#808080" stroke-width="0.5"/>
+<rect x="1381.6" y="642.5" width="3.4" height="3" rx="0.6" fill="#FFFFFF" stroke="#808080" stroke-width="0.5"/>
+<rect x="1386.2" y="642.5" width="3.4" height="3" rx="0.6" fill="#FFFFFF" stroke="#808080" stroke-width="0.5"/>
+<rect x="1377" y="646.8" width="3.4" height="3" rx="0.6" fill="#FFFFFF" stroke="#808080" stroke-width="0.5"/>
+<rect x="1381.6" y="646.8" width="3.4" height="3" rx="0.6" fill="#FFFFFF" stroke="#808080" stroke-width="0.5"/>
+<rect x="1386.2" y="646.8" width="3.4" height="3" rx="0.6" fill="#FFFFFF" stroke="#808080" stroke-width="0.5"/>
+<rect x="1377" y="651.1" width="3.4" height="3" rx="0.6" fill="#FFFFFF" stroke="#808080" stroke-width="0.5"/>
+<rect x="1381.6" y="651.1" width="3.4" height="3" rx="0.6" fill="#FFFFFF" stroke="#808080" stroke-width="0.5"/>
+<rect x="1386.2" y="651.1" width="3.4" height="3" rx="0.6" fill="#F5B482" stroke="#808080" stroke-width="0.5"/>
+<text x="1403" y="650" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="15" font-weight="bold" fill="#3B3838" text-anchor="start">Cost · latency</text>
+<text x="1373" y="674" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="13.5" font-weight="normal" fill="#3B3838" text-anchor="start">per purchase</text>
+<path d="M1373 712 H1541" fill="none" stroke="#B0ACAC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1373" y="744" font-family="Consolas, Menlo, 'Courier New', monospace" font-size="13" fill="#3B3838">n runs · 95% CI</text>
+<rect x="59" y="284" width="150.312" height="32" rx="9" fill="#FFFFFF" stroke="#808080" stroke-width="1.6"/>
+<text x="73" y="305.5" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="16" font-weight="bold" fill="#3B3838" text-anchor="start">Benchmark task</text>
+<rect x="332" y="284" width="161.469" height="32" rx="9" fill="#FFFFFF" stroke="#808080" stroke-width="1.6"/>
+<text x="346" y="305.5" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="16" font-weight="bold" fill="#3B3838" text-anchor="start">Agent under test</text>
+<rect x="772" y="284" width="154.354" height="32" rx="9" fill="#FFFFFF" stroke="#808080" stroke-width="1.6"/>
+<text x="786" y="305.5" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="16" font-weight="bold" fill="#3B3838" text-anchor="start">PayGuard</text>
+<text x="857.43" y="305.5" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="15" font-weight="normal" fill="#3B3838" text-anchor="start"> (guard)</text>
+<rect x="1373" y="284" width="86.7891" height="32" rx="9" fill="#FFFFFF" stroke="#808080" stroke-width="1.6"/>
+<text x="1387" y="305.5" font-family="'Comic Sans MS', 'Comic Neue', sans-serif" font-size="16" font-weight="bold" fill="#3B3838" text-anchor="start">Metrics</text>
+</g>
+</svg>
